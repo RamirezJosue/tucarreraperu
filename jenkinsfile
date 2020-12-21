@@ -1,0 +1,17 @@
+node {
+    stage('Checkout SCM'){
+        git branch: 'master', url: 'git@github.com:RamirezJosue/tucarreraperu.git'
+    }
+
+    stage('Install node modules'){
+        sh 'npm install --unsafe-perm'
+    }
+
+    stage('Build'){
+        sh 'ng build --prod'
+    }
+
+    stage('Deploy'){
+        sh 'node server.js'
+    }
+}
